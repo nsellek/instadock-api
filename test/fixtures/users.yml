@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  jwt_token: MyString
+  instagram_code: MyString
+  username: MyString
+  instagram_token: MyString
+
+two:
+  jwt_token: MyString
+  instagram_code: MyString
+  username: MyString
+  instagram_token: MyString
