@@ -12,7 +12,7 @@ gem 'puma', '~> 3.7'
 # gem 'jwt' for later use
 
 group :development, :test do
-  gem 'dotenv'
+  gem 'dotenv-rails'
   gem 'pry-rails'
   gem 'pry-byebug'
 end
