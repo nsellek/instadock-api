@@ -1,0 +1,1 @@
+$insta_client = Instagram.new
