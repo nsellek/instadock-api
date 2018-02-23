@@ -58,6 +58,7 @@ GEM
       domain_name (~> 0.5)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    jwt (2.1.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -151,6 +152,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv-rails
+  jwt
   listen (>= 3.0.5, < 3.2)
   mysql2
   pry-byebug
