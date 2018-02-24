@@ -13,7 +13,7 @@ gem 'rest-client'
 gem 'jwt'
 
 group :development, :test do
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
   gem 'pry-rails'
   gem 'pry-byebug'
 end
