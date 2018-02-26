@@ -4,7 +4,7 @@ class InstaRequest
 
     def get(endpoint, params={})
       RestClient.get(@@base_url + endpoint,
-                     params
+                     {params: params}
                      )
     end
 
