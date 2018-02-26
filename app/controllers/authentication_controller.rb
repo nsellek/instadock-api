@@ -2,16 +2,20 @@ class AuthenticationController < ApplicationController
   skip_before_action :authorize_app
 
   def get_jwt_token
-    payload = {
-        api_key: params['api_key'],
-        api_secret: ENV['API_SECRET'],
-        rand_string: gen_rand_string
-    }
+    if params['api_key'] == ENV['APP_KEY']
+      payload = {
+          app_key: params['api_key'],
+          app_secret: ENV['APP_SECRET'],
+          rand_string: gen_rand_string
+      }
 
-    token = JwtToken.encode payload
-    JwtToken.find_or_create_by!(jwt_token: token)
+      token = JwtToken.encode payload
+      JwtToken.find_or_create_by!(jwt_token: token)
 
-    render json: {jwt: token }
+      render json: {jwt: token }
+    else
+      render json: {code: 400, error: 'Invalid Key'}, status: 400
+    end
   end
 
   private

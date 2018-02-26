@@ -11,7 +11,7 @@ class Instagram
         'client_secret': @client_secret,
         'grant_type': 'authorization_code',
         'code': auth_code,
-        'redirect_uri': ENV['redirect_url']
+        'redirect_uri': ENV['REDIRECT_URL']
     }
 
     response = InstaRequest.post('oauth/access_token', params, 'x-www-form-urlencoded')
