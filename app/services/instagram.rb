@@ -13,9 +13,8 @@ class Instagram
         'code': auth_code,
         'redirect_uri': ENV['REDIRECT_URL']
     }
-
     response = InstaRequest.post('oauth/access_token', params, 'application/x-www-form-urlencoded')
-    JSON.parse(response.body)
+    json_parse(response)
   end
 
   def self_recent_media(access_token, max_id=nil)
@@ -26,6 +25,32 @@ class Instagram
     }
 
     response = InstaRequest.get('v1/users/self/media/recent', params)
+    json_parse(response)
+  end
+
+  def self_liked_media(access_token, max_id=nil)
+    params = {
+        'access_token': access_token,
+        'max_like_id': max_id,
+        'count': '15'
+    }
+
+    response = InstaRequest.get('v1/users/self/media/liked', params)
+    json_parse(response)
+  end
+
+  def self_follows(access_token)
+    params = {
+        'access_token': access_token
+    }
+
+    response = InstaRequest.get('v1/users/self/follows', params)
+    json_parse(response)
+  end
+
+  private
+
+  def json_parse(response)
     JSON.parse(response.body)
   end
 end

@@ -31,4 +31,24 @@ class InstagramController < ApplicationController
 
     render json: filtered_media, status: 200
   end
+
+  def my_liked_media
+    oldest_liked = params['oldest_liked']
+
+    liked_media = @@instagram.self_liked_media(@user.instagram_token, oldest_liked)
+    next_set = liked_media['pagination']['next_max_id']
+    data = liked_media['data']
+    filtered_liked_media = {
+        next_set: next_set,
+        data: data
+    }
+
+    render json: filtered_liked_media, status: 200
+  end
+
+  def my_follows
+    follows = @@instagram.self_follows(@user.instagram_token)
+
+    render json: follows, status: 200
+  end
 end
