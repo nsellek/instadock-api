@@ -19,10 +19,9 @@ class InstagramController < ApplicationController
   end
 
   def my_media
-    user = JwtToken.find_by(jwt_token: params['jwt']).user
     oldest_media = params['oldest_media']
 
-    media = @@instagram.self_recent_media(user.instagram_token, oldest_media)
+    media = @@instagram.self_recent_media(@user.instagram_token, oldest_media)
     next_set = media['pagination']['next_max_id']
     data = media['data']
     filtered_media = {

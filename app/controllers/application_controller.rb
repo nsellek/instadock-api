@@ -10,4 +10,8 @@ class ApplicationController < ActionController::API
 
     render json: {code: 401, error: 'Invalid token'}, status: 401 unless decoded_token[0]['app_secret'] == ENV['APP_SECRET']
   end
+
+  def get_user
+    @user = JwtToken.find_by(jwt_token: params['jwt']).user
+  end
 end
