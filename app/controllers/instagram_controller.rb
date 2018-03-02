@@ -51,4 +51,10 @@ class InstagramController < ApplicationController
 
     render json: follows, status: 200
   end
+
+  def my_followers
+    followers = @@instagram.self_followers(@user.instagram_token)
+
+    render json: followers, status: 200
+  end
 end

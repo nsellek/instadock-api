@@ -48,6 +48,15 @@ class Instagram
     json_parse(response)
   end
 
+  def self_followers(access_token)
+    params = {
+        'access_token': access_token
+    }
+
+    response = InstaRequest.get('v1/users/self/followed-by', params)
+    json_parse(response)
+  end
+
   private
 
   def json_parse(response)
