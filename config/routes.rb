@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get :my_followers, to: 'instagram#my_followers'
     ## Relationships requests
     get :my_requested, to: 'instagram#my_requested'
+    ## Comments requests
+    get :get_comments, to: 'instagram#get_comments'
     # all post requests
     post :authorize, to: 'instagram#authorize'
     ## Relationships requests

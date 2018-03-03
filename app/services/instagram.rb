@@ -88,6 +88,16 @@ class Instagram
     json_parse(response)
   end
 
+  # Comments
+  def get_comments(access_token, media_id)
+    params = {
+        'access_token': access_token
+    }
+
+    response = InstaRequest.get("v1/media/#{media_id}/comments", params)
+    json_parse(response)
+  end
+
   private
 
   def json_parse(response)
