@@ -104,4 +104,19 @@ class InstagramController < ApplicationController
 
     render json: comment, status: 201
   end
+
+  def remove_comment
+    media_id = params[:media_id]
+    comment_id = params[:comment_id]
+
+    comment = INSTAGRAM.remove_comment(token, media_id, comment_id)
+
+    render json: comment, status: 200
+  end
+
+  private
+
+  def token
+    @user.instagram_token
+  end
 end

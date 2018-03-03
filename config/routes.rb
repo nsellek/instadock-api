@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     ## Comments requests
     post :comment, to: 'instagram#comment'
     # all delete requests
+    delete :comment, to: 'instagram#remove_comment'
   end
 
   post 'app/auth_token', to: 'authentication#get_jwt_token'

@@ -108,6 +108,12 @@ class Instagram
     json_parse(response)
   end
 
+  def remove_comment(access_token, media_id, comment_id)
+    response = InstaRequest.del("v1/media/#{media_id}/comments/#{comment_id}?access_token=#{access_token}")
+
+    json_parse(response)
+  end
+
   private
 
   def json_parse(response)
