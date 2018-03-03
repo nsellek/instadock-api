@@ -21,7 +21,7 @@ class InstagramController < ApplicationController
   def my_media
     oldest_media = params['oldest_media']
 
-    media = @@instagram.self_recent_media(@user.instagram_token, oldest_media)
+    media = INSTAGRAM.my_recent_media(@user.instagram_token, oldest_media)
     next_set = media['pagination']['next_max_id']
     data = media['data']
     filtered_media = {
@@ -35,7 +35,7 @@ class InstagramController < ApplicationController
   def my_liked_media
     oldest_liked = params['oldest_liked']
 
-    liked_media = INSTAGRAM.self_liked_media(@user.instagram_token, oldest_liked)
+    liked_media = INSTAGRAM.my_liked_media(@user.instagram_token, oldest_liked)
     next_set = liked_media['pagination']['next_max_id']
     data = liked_media['data']
     filtered_liked_media = {
@@ -47,13 +47,13 @@ class InstagramController < ApplicationController
   end
 
   def my_follows
-    follows = INSTAGRAM.self_follows(@user.instagram_token)
+    follows = INSTAGRAM.my_follows(@user.instagram_token)
 
     render json: follows, status: 200
   end
 
   def my_followers
-    followers = INSTAGRAM.self_followers(@user.instagram_token)
+    followers = INSTAGRAM.my_followers(@user.instagram_token)
 
     render json: followers, status: 200
   end

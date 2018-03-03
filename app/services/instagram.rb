@@ -17,7 +17,7 @@ class Instagram
     json_parse(response)
   end
 
-  def self_recent_media(access_token, max_id=nil)
+  def my_recent_media(access_token, max_id=nil)
     params = {
         'access_token': access_token,
         'max_id': max_id,
@@ -28,7 +28,7 @@ class Instagram
     json_parse(response)
   end
 
-  def self_liked_media(access_token, max_id=nil)
+  def my_liked_media(access_token, max_id=nil)
     params = {
         'access_token': access_token,
         'max_like_id': max_id,
@@ -39,7 +39,7 @@ class Instagram
     json_parse(response)
   end
 
-  def self_follows(access_token)
+  def my_follows(access_token)
     params = {
         'access_token': access_token
     }
@@ -48,7 +48,7 @@ class Instagram
     json_parse(response)
   end
 
-  def self_followers(access_token)
+  def my_followers(access_token)
     params = {
         'access_token': access_token
     }
