@@ -17,6 +17,7 @@ class Instagram
     json_parse(response)
   end
 
+  # Media
   def my_recent_media(access_token, max_id=nil)
     params = {
         'access_token': access_token,
@@ -39,6 +40,16 @@ class Instagram
     json_parse(response)
   end
 
+  def find_media(access_token, media_id)
+    params = {
+        'access_token': access_token
+    }
+
+    media = InstaRequest.get("v1/media/#{media_id}", params)
+    json_parse(media)
+  end
+
+  # Followers
   def my_follows(access_token)
     params = {
         'access_token': access_token
@@ -57,6 +68,7 @@ class Instagram
     json_parse(response)
   end
 
+  # relationships
   def my_requested(access_token)
     params = {
         'access_token': access_token

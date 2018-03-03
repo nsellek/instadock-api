@@ -3,13 +3,18 @@ Rails.application.routes.draw do
 
   scope :instagram do
     # all get requests
+    ## Media requests
     get :my_media, to: 'instagram#my_media'
     get :my_liked_media, to: 'instagram#my_liked_media'
+    get :find_media, to: 'instagram#find_media'
+    ## Follower requests
     get :my_follows, to: 'instagram#my_follows'
     get :my_followers, to: 'instagram#my_followers'
+    ## Relationships requests
     get :my_requested, to: 'instagram#my_requested'
     # all post requests
     post :authorize, to: 'instagram#authorize'
+    ## Relationships requests
     post :relationship, to: 'instagram#relationship'
     # all delete requests
   end

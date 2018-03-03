@@ -18,6 +18,7 @@ class InstagramController < ApplicationController
     render json: {code: 200, message: 'Authorized'}, status: 200
   end
 
+  # Media
   def my_media
     oldest_media = params['oldest_media']
 
@@ -46,6 +47,18 @@ class InstagramController < ApplicationController
     render json: filtered_liked_media, status: 200
   end
 
+  def find_media
+    media_id = params[:media_id]
+
+    media = INSTAGRAM.find_media(@user.instagram_token, media_id)
+    media = {
+        media: media['data']
+    }
+
+    render json: media, status: 200
+  end
+
+  # Followers
   def my_follows
     follows = INSTAGRAM.my_follows(@user.instagram_token)
 
@@ -58,6 +71,7 @@ class InstagramController < ApplicationController
     render json: followers, status: 200
   end
 
+  # Relationships
   def my_requested
     requests = INSTAGRAM.my_requested(@user.instagram_token)
 
