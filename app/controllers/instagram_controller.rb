@@ -2,6 +2,7 @@ class InstagramController < ApplicationController
   before_action :get_user, except: :authorize
 
   def authorize
+    # TODO Figure out how to handle multiple apps per user
     token = JwtToken.find_by(jwt_token: params['jwt'])
     user = token.user || User.find_or_initialize_by(instagram_code: params[:code])
 
@@ -22,7 +23,7 @@ class InstagramController < ApplicationController
   def my_media
     oldest_media = params['oldest_media']
 
-    media = INSTAGRAM.my_recent_media(@user.instagram_token, oldest_media)
+    media = INSTAGRAM.my_recent_media(token, oldest_media)
     next_set = media['pagination']['next_max_id']
     data = media['data']
     filtered_media = {
@@ -36,7 +37,7 @@ class InstagramController < ApplicationController
   def my_liked_media
     oldest_liked = params['oldest_liked']
 
-    liked_media = INSTAGRAM.my_liked_media(@user.instagram_token, oldest_liked)
+    liked_media = INSTAGRAM.my_liked_media(token, oldest_liked)
     next_set = liked_media['pagination']['next_max_id']
     data = liked_media['data']
     filtered_liked_media = {
@@ -50,7 +51,7 @@ class InstagramController < ApplicationController
   def find_media
     media_id = params[:media_id]
 
-    media = INSTAGRAM.find_media(@user.instagram_token, media_id)
+    media = INSTAGRAM.find_media(token, media_id)
     media = {
         media: media['data']
     }
@@ -60,20 +61,20 @@ class InstagramController < ApplicationController
 
   # Followers
   def my_follows
-    follows = INSTAGRAM.my_follows(@user.instagram_token)
+    follows = INSTAGRAM.my_follows(token)
 
     render json: follows, status: 200
   end
 
   def my_followers
-    followers = INSTAGRAM.my_followers(@user.instagram_token)
+    followers = INSTAGRAM.my_followers(token)
 
     render json: followers, status: 200
   end
 
   # Relationships
   def my_requested
-    requests = INSTAGRAM.my_requested(@user.instagram_token)
+    requests = INSTAGRAM.my_requested(token)
 
     render json: requests, status: 200
   end
@@ -82,7 +83,7 @@ class InstagramController < ApplicationController
     action = params[:action]
     user_id = params[:user_id]
 
-    relationship = INSTAGRAM.send_relationship(@user.instagram_token, action, user_id)
+    relationship = INSTAGRAM.send_relationship(token, action, user_id)
 
     render json: relationship, status: 200
   end
@@ -91,7 +92,7 @@ class InstagramController < ApplicationController
   def get_comments
     media_id = params[:media_id]
 
-    comments = INSTAGRAM.get_comments(@user.instagram_token, media_id)
+    comments = INSTAGRAM.get_comments(token, media_id)
 
     render json: comments, status: 200
   end
@@ -100,7 +101,7 @@ class InstagramController < ApplicationController
     media_id = params[:media_id]
     comment = params[:comment]
 
-    comment = INSTAGRAM.comment(@user.instagram_token, media_id, comment)
+    comment = INSTAGRAM.comment(token, media_id, comment)
 
     render json: comment, status: 201
   end
