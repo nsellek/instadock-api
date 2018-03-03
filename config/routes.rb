@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     post :authorize, to: 'instagram#authorize'
     ## Relationships requests
     post :relationship, to: 'instagram#relationship'
+    ## Comments requests
+    post :comment, to: 'instagram#comment'
     # all delete requests
   end
 

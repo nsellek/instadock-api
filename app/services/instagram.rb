@@ -13,7 +13,7 @@ class Instagram
         'code': auth_code,
         'redirect_uri': ENV['REDIRECT_URL']
     }
-    response = InstaRequest.post('oauth/access_token', params, 'application/x-www-form-urlencoded')
+    response = InstaRequest.post('oauth/access_token', params)
     json_parse(response)
   end
 
@@ -95,6 +95,16 @@ class Instagram
     }
 
     response = InstaRequest.get("v1/media/#{media_id}/comments", params)
+    json_parse(response)
+  end
+
+  def comment(access_token, media_id, comment)
+    params ={
+        'access_token': access_token,
+        'text': comment
+    }
+
+    response = InstaRequest.post("v1/media/#{media_id}/comments", params)
     json_parse(response)
   end
 

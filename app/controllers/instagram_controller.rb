@@ -95,4 +95,13 @@ class InstagramController < ApplicationController
 
     render json: comments, status: 200
   end
+
+  def comment
+    media_id = params[:media_id]
+    comment = params[:comment]
+
+    comment = INSTAGRAM.comment(@user.instagram_token, media_id, comment)
+
+    render json: comment, status: 201
+  end
 end
