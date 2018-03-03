@@ -57,4 +57,10 @@ class InstagramController < ApplicationController
 
     render json: followers, status: 200
   end
+
+  def my_requested
+    requests = INSTAGRAM.my_requested(@user.instagram_token)
+
+    render json: requests, status: 200
+  end
 end
