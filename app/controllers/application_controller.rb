@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   before_action :authorize_app
 
-  @@instagram = Instagram.new
+  INSTAGRAM = Instagram.new
 
   def authorize_app
     render json: {code: 400, error: 'JWT required'}, status: 400 && return unless params[:jwt].present?
