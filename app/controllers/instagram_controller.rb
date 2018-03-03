@@ -63,4 +63,13 @@ class InstagramController < ApplicationController
 
     render json: requests, status: 200
   end
+
+  def relationship
+    action = params[:action]
+    user_id = params[:user_id]
+
+    relationship = INSTAGRAM.send_relationship(@user.instagram_token, action, user_id)
+
+    render json: relationship, status: 200
+  end
 end

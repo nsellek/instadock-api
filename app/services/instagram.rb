@@ -66,6 +66,16 @@ class Instagram
     json_parse(response)
   end
 
+  def send_relationship(access_token, action, user_id)
+    params = {
+        'access_token': access_token,
+        'action': action
+    }
+
+    response = InstaRequest.post("v1/users/#{user_id}/relationship", params)
+    json_parse(response)
+  end
+
   private
 
   def json_parse(response)

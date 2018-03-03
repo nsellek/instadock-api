@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     get :my_requested, to: 'instagram#my_requested'
     # all post requests
     post :authorize, to: 'instagram#authorize'
+    post :relationship, to: 'instagram#relationship'
+    # all delete requests
   end
 
   post 'app/auth_token', to: 'authentication#get_jwt_token'
