@@ -3,6 +3,8 @@ class ApplicationController < ActionController::API
 
   INSTAGRAM = Instagram.new
 
+  private
+
   def authorize_app
     unless params[:jwt].present?
       render json: {code: 400, error: 'JWT required'}, status: 400
@@ -19,5 +21,9 @@ class ApplicationController < ActionController::API
 
   def get_user
     @user = JwtToken.find_by(jwt_token: params['jwt']).user
+  end
+
+  def token
+    @user.instagram_token
   end
 end

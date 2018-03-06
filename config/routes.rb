@@ -1,27 +1,18 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  scope :instagram do
-    # all get requests
-    ## Media requests
-    get :my_media, to: 'instagram#my_media'
-    get :my_liked_media, to: 'instagram#my_liked_media'
-    get :find_media, to: 'instagram#find_media'
-    ## Follower requests
-    get :my_follows, to: 'instagram#my_follows'
-    get :my_followers, to: 'instagram#my_followers'
-    ## Relationships requests
-    get :my_requested, to: 'instagram#my_requested'
-    ## Comments requests
-    get :get_comments, to: 'instagram#get_comments'
-    # all post requests
+  namespace :instagram do
+    resources :comments, only: [:index, :create, :destroy]
+    resources :relationships, only: [:update]
+    resources :media, only: [:show]
+    namespace :self do
+      resources :followers, only: [:index]
+      resources :media, only:[:index]
+      resources :liked_media, only: [:index]
+      resources :followed_by, only: [:index]
+      resources :requested_by, only: [:index]
+    end
     post :authorize, to: 'instagram#authorize'
-    ## Relationships requests
-    post :relationship, to: 'instagram#relationship'
-    ## Comments requests
-    post :comment, to: 'instagram#comment'
-    # all delete requests
-    delete :comment, to: 'instagram#remove_comment'
   end
 
   post 'app/auth_token', to: 'authentication#get_jwt_token'

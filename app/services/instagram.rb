@@ -69,7 +69,7 @@ class Instagram
   end
 
   # relationships
-  def my_requested(access_token)
+  def relationships(access_token)
     params = {
         'access_token': access_token
     }
@@ -89,7 +89,7 @@ class Instagram
   end
 
   # Comments
-  def get_comments(access_token, media_id)
+  def comments(access_token, media_id)
     params = {
         'access_token': access_token
     }
