@@ -114,6 +114,31 @@ class Instagram
     json_parse(response)
   end
 
+  # Likes
+  def likes(access_token, media_id)
+    params = {
+        'access_token': access_token
+    }
+
+    response = InstaRequest.get("v1/media/#{media_id}/likes", params)
+    json_parse(response)
+  end
+
+  def like(access_token, media_id)
+    params = {
+        'access_token': access_token
+    }
+
+    response = InstaRequest.post("v1/media/#{media_id}/likes", params)
+    json_parse(response)
+  end
+
+  def remove_like(access_token, media_id)
+    response = InstaRequest.del("v1/media/#{media_id}/likes?access_token=#{access_token}")
+
+    json_parse(response)
+  end
+
   private
 
   def json_parse(response)

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create, :destroy]
     resources :relationships, only: [:update]
     resources :media, only: [:show]
+    resources :likes, only: [:index, :create, :destroy]
     namespace :self do
       resources :followers, only: [:index]
       resources :media, only:[:index]
