@@ -161,6 +161,16 @@ class Instagram
     json_parse(response)
   end
 
+  # Self
+  def get_me(access_token)
+    params = {
+        'access_token': access_token
+    }
+
+    response = InstaRequest.get('v1/users/self', params)
+    json_parse(response)
+  end
+
   private
 
   def json_parse(response)

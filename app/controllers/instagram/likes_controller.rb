@@ -18,7 +18,7 @@ class Instagram::LikesController < ApplicationController
   end
 
   def destroy
-    media_id = params[:media_id]
+    media_id = params[:id]
 
     like = INSTAGRAM.remove_like(token, media_id)
 

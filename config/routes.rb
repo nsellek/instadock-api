@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :media, only: [:show]
     resources :likes, only: [:index, :create, :destroy]
     resources :tags, only: [:index, :show]
+    resources :self, only: [:index]
     namespace :self do
       resources :followers, only: [:index]
       resources :media, only:[:index]
