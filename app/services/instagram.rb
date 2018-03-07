@@ -139,6 +139,28 @@ class Instagram
     json_parse(response)
   end
 
+  # Tags
+  def get_tags(access_token, query)
+    params = {
+        'access_token': access_token,
+        'q': query
+    }
+
+    response = InstaRequest.get('v1/tags/search', params)
+    json_parse(response)
+  end
+
+  def get_tagged_media(access_token, tag_name, max_tag_id)
+    params = {
+        'access_token': access_token,
+        'max_tag_id': max_tag_id,
+        'count': '15'
+    }
+
+    response = InstaRequest.get("v1/tags/#{tag_name}/media/recent", params)
+    json_parse(response)
+  end
+
   private
 
   def json_parse(response)

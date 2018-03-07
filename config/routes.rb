@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :relationships, only: [:update]
     resources :media, only: [:show]
     resources :likes, only: [:index, :create, :destroy]
+    resources :tags, only: [:index, :show]
     namespace :self do
       resources :followers, only: [:index]
       resources :media, only:[:index]
