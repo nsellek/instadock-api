@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   scope :app do
-    post 'user_create', to: 'users#create'
-    post 'auth_token', to: 'authentication#get_jwt_token'
+    resources :users, only: [:create]
+    get 'user', to: 'users#show'
   end
 end

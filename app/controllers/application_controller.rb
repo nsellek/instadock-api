@@ -20,13 +20,15 @@ class ApplicationController < ActionController::API
   end
 
 
-  def authorize_user_creation
+  def authorize_user
     unless params[:jwt].present?
       render json: {code: 400, error: 'JWT required'}, status: 400
       return false
     end
 
     decoded_token = JwtToken.decode_for_user(params[:jwt])[0]
+
+    @token = decoded_token and return true unless decoded_token.key?('password_confirmation')
 
     if decoded_token['api_key'] == ENV['api_key']
       @user_info = {
