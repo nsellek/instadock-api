@@ -8,4 +8,8 @@ class JwtToken < ApplicationRecord
   def self.decode(token)
     JWT.decode token, ENV['APP_SECRET'], 'HS256'
   end
+
+  def self.decode_for_user(token)
+    JWT.decode token, nil, false
+  end
 end

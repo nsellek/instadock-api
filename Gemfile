@@ -11,6 +11,7 @@ gem 'mysql2'
 gem 'puma', '~> 3.7'
 gem 'rest-client'
 gem 'jwt'
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'dotenv-rails', require: 'dotenv/rails-now'

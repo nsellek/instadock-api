@@ -18,5 +18,8 @@ Rails.application.routes.draw do
     post :authorize, to: 'instagram#authorize'
   end
 
-  post 'app/auth_token', to: 'authentication#get_jwt_token'
+  scope :app do
+    post 'user_create', to: 'users#create'
+    post 'auth_token', to: 'authentication#get_jwt_token'
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223211206) do
+ActiveRecord::Schema.define(version: 20180308002924) do
 
   create_table "api_credentials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "api_key"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20180223211206) do
   end
 
   create_table "jwt_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "jwt_token"
+    t.text "jwt_token"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_jwt_tokens_on_user_id"
   end
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20180223211206) do
     t.string "instagram_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.string "password_digest"
   end
 
   add_foreign_key "jwt_tokens", "users"
