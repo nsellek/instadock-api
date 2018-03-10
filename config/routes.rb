@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :followed_by, only: [:index]
       resources :requested_by, only: [:index]
     end
-    post :authorize, to: 'instagram#authorize'
+    post :authorize
   end
 
   scope :app do
